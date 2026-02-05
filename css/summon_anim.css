@@ -1,0 +1,75 @@
+.video-placeholder {
+    background: #05060b;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    --star-color: #ffffff;
+    --star-glow-color: rgba(255, 255, 255, 0);
+    --star-glow-size: 0px;
+    --star-glow-peak: 0px;
+}
+
+.summon-2d-bg {
+    position: absolute;
+    inset: 0;
+    background: #05060b;
+    opacity: 1;
+}
+
+.summon-stars {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    z-index: 2;
+}
+
+.summon-star {
+    width: 72px;
+    height: 72px;
+    opacity: 0;
+    transform: scale(0.7);
+    filter: drop-shadow(0 0 var(--star-glow-size) var(--star-glow-color));
+    animation: starAppear var(--appear-duration) cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
+    animation-delay: var(--delay);
+}
+
+.summon-star polygon {
+    fill: var(--star-color);
+    fill-opacity: 0;
+    stroke: var(--star-color);
+    stroke-width: 6;
+    stroke-linejoin: round;
+    stroke-dasharray: 320;
+    stroke-dashoffset: 320;
+    animation: starStroke var(--appear-duration) cubic-bezier(0.2, 0.9, 0.2, 1) forwards;
+    animation-delay: var(--delay);
+}
+
+.summon-stars.fade-out .summon-star {
+    animation: starFade 0.2s ease forwards !important;
+}
+
+.summon-stars.fade-out .summon-star polygon {
+    animation: none !important;
+}
+
+@keyframes starAppear {
+    0% { opacity: 0; transform: scale(0.7); filter: drop-shadow(0 0 0 var(--star-glow-color)); }
+    70% { opacity: 1; transform: scale(1.08); filter: drop-shadow(0 0 var(--star-glow-peak) var(--star-glow-color)); }
+    100% { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 var(--star-glow-size) var(--star-glow-color)); }
+}
+
+@keyframes starStroke {
+    0% { stroke-dashoffset: 320; fill-opacity: 0; }
+    70% { stroke-dashoffset: 0; fill-opacity: 0.35; }
+    100% { stroke-dashoffset: 0; fill-opacity: 1; }
+}
+
+@keyframes starFade {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.96); }
+}

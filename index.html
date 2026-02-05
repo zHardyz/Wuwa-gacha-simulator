@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wuthering Waves - Convene</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/results.css">
+    <link rel="stylesheet" href="css/summon_anim.css">
+    <link rel="stylesheet" href="css/details.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Background Layer (Banner Image) -->
+    <div id="background-layer" class="background-layer"></div>
+    <div class="bg-overlay-gradient"></div>
+
+    <!-- Top Navigation Bar -->
+    <div class="top-nav">
+        <div class="nav-left">
+            <div class="nav-title">
+                <img src="assets/icons/convene-icon.svg" class="nav-icon-img" alt="❖" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'">
+                <span class="nav-icon-text">❖</span>
+                <span>CONVENE</span>
+            </div>
+        </div>
+        <div class="nav-right">
+            <!-- Currency Items -->
+            <div class="currency-pill">
+                <span class="currency-icon">✦</span>
+                <span id="crystal-count">0</span>
+                <span id="astrite-timer" class="currency-timer">10:00</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Layout -->
+    <div class="main-layout">
+        
+        <!-- Left Sidebar: Banners -->
+        <div class="sidebar">
+            <div class="banner-list" id="banner-list">
+                <!-- Banner items injected here -->
+            </div>
+        </div>
+
+        <!-- Center/Main Info Area -->
+        <div class="banner-content">
+            
+            <!-- Top Left Info -->
+            <div class="banner-header-info">
+                <h3 class="sub-title">Featured Resonator Convene</h3>
+                <h1 id="banner-title" class="main-title">Titulo do Banner</h1>
+                
+                <div class="banner-meta">
+                    <div class="banner-timer">
+                        <span class="timer-icon">🕒</span> 7d 19h Restantes
+                    </div>
+                    <div class="banner-pity-info">
+                        <span class="pity-highlight">5★ Garantido</span> em 80
+                    </div>
+                    <button id="banner-details-btn" class="details-btn">ⓘ Detalhes</button>
+                </div>
+
+                <div class="banner-description">
+                    <p id="banner-desc">Descrição do banner aqui.</p>
+                </div>
+            </div>
+
+            <!-- Rate Up 4-Stars (Bottom Left) -->
+            <div class="rate-up-section">
+                <div class="rate-up-header">
+                    <span class="rate-up-line"></span>
+                    <span class="rate-up-label">4★ RESONATORS RATE UP</span>
+                    <span class="rate-up-line"></span>
+                </div>
+                <div class="rate-up-list" id="rate-up-list">
+                    <!-- 4 Star Portraits injected here -->
+                </div>
+            </div>
+
+            <!-- Featured Character Name (Right Side - Floating) -->
+            <div class="featured-name-plate">
+                <div class="element-icon" id="element-icon">🔥</div>
+                <div class="name-group">
+                    <h2 id="featured-name">NOME RESONADOR</h2>
+                    <div class="rarity-row">
+                        <span class="rarity-stars">★★★★★</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Actions -->
+            <div class="bottom-actions">
+               
+
+                <div class="summon-buttons">
+                    <button id="summon-1-btn" class="summon-btn">
+                        <div class="btn-bg"></div>
+                        <div class="summon-content">
+                            <span class="summon-label">Convene x1</span>
+                            <div class="summon-cost-row">
+                            <span class="currency-icon-small">✦</span>
+                                <span class="summon-cost">160</span>
+                            </div>
+                        </div>
+                    </button>
+                    <button id="summon-10-btn" class="summon-btn highlight-btn">
+                        <div class="btn-bg"></div>
+                        <div class="summon-content">
+                            <span class="summon-label">Convene x10</span>
+                            <div class="summon-cost-row">
+                            <span class="currency-icon-small">✦</span>
+                                <span class="summon-cost">1600</span>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Banner Details Popup -->
+    <div id="details-modal" class="modal-overlay hidden">
+        <div class="details-content">
+            <div class="details-header">
+                <h2>Detalhes do Banner</h2>
+                <button id="close-details-btn" class="close-btn">×</button>
+            </div>
+            <div class="details-body" id="details-list">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Summon Animation Overlay -->
+    <div id="summon-overlay" class="summon-overlay hidden">
+        <div class="video-container">
+            <div id="video-placeholder" class="video-placeholder" data-state="idle">
+                <div class="summon-2d-bg"></div>
+                <div id="summon-stars" class="summon-stars"></div>
+            </div>
+        </div>
+
+        <!-- Single Item Reveal Modal (Full Screen) -->
+        <div id="reveal-modal" class="reveal-modal hidden">
+            <div class="reveal-content">
+                <div class="reveal-flash"></div> <!-- Flash Effect -->
+                <img id="reveal-img" class="reveal-img-fullscreen" src="" alt="Resonador">
+                <div class="reveal-overlay-gradient"></div>
+                
+                <div class="reveal-info-box">
+                    <div class="reveal-rarity" id="reveal-rarity">★★★★★</div>
+                    <h1 class="reveal-name" id="reveal-name">Resonador</h1>
+                    <div class="reveal-type" id="reveal-type">RESONADOR</div>
+                    <div class="reveal-currency" id="reveal-currency"></div>
+                </div>
+
+                <div class="reveal-click-area"></div> <!-- Invisible full screen clicker -->
+            </div>
+        </div>
+
+        <!-- Summary Grid -->
+        <div id="summon-results" class="summon-results hidden">
+            <div id="results-grid" class="results-grid">
+                <!-- Result items injected here -->
+            </div>
+            <button id="close-results-btn" class="close-results-btn">CONFIRMAR</button>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
